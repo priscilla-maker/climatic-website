@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPulse | Enterprise Modules</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sol-grid { display: grid; grid-template-cols: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .sol-card img { width: 100%; h: 180px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌦️ <span>SkyPulse</span></a>
+            <nav>
+                <a href="index.html" class="nav-btn">Home</a>
+                <a href="about.html" class="nav-btn">About Us</a>
+                <a href="history.html" class="nav-btn">History</a>
+                <a href="solutions.html" class="nav-btn active">Solutions</a>
+                <a href="map.html" class="nav-btn">World Map</a>
+                <a href="contact.html" class="nav-btn">Contact Us</a>
+            </nav>
+            <div class="auth-zone"><a href="signin.html" class="nav-btn">Sign In</a></div>
+        </div>
+    </header>
+
+    <main>
+        <div style="text-center: center; max-width: 600px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; gap: 0.5rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 900;">Tailored Telemetry Systems</h1>
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">Custom modules engineered to integrate raw weather inputs directly into active production grids.</p>
+        </div>
+
+        <div class="sol-grid">
+            <div class="panel-card sol-card">
+                <img src="5.png" alt="Agriculture Solution">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">🚜 Predictive Agro-Metrics</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5;">Maintains evapotranspiration logs combined with sub-surface crop frost warning networks to safeguard agricultural yields safely.</p>
+            </div>
+            <div class="panel-card sol-card">
+                <img src="6.png" alt="Clean Energy Solution">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">⚡ Clean Energy Balancing</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5;">Maps multi-layered high-altitude wind currents to gauge offshore renewable turbine production thresholds dynamically.</p>
+            </div>
+            <div class="panel-card sol-card">
+                <img src="4.png" alt="Logistics Solution">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">✈️ Avionics Optimization</h3>
+                <p style="color: var(--text-secondary); font-size: 0.8rem; line-height: 1.5;">Trims fuel consumption parameters safely by tracking micro-turbulence zones along major transport pathways.</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

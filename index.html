@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPulse | Live Weather Matrix</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dash-grid { display: grid; grid-template-cols: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+        @media (min-width: 1024px) { .dash-grid { grid-template-cols: 2fr 1fr; } }
+        .hero-widget { position: relative; min-height: 320px; border-radius: 1.5rem; overflow: hidden; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+        .hero-bg { position: absolute; inset: 0; width: 100%; h-full; object-fit: cover; opacity: 0.3; z-index: 1; }
+        .metrics-row { display: grid; grid-template-cols: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌦️ <span>SkyPulse</span></a>
+            <nav>
+                <a href="index.html" class="nav-btn active">Home</a>
+                <a href="about.html" class="nav-btn">About Us</a>
+                <a href="history.html" class="nav-btn">History</a>
+                <a href="solutions.html" class="nav-btn">Solutions</a>
+                <a href="map.html" class="nav-btn">World Map</a>
+                <a href="contact.html" class="nav-btn">Contact Us</a>
+            </nav>
+            <div class="auth-zone">
+                <a href="signin.html" class="nav-btn">Sign In</a>
+                <a href="signup.html" class="btn-action">Create Account</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="panel-card" style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;">
+            <div>
+                <h1 style="font-size: 1.75rem; font-weight: 900;">Custom Atmospheric Control Station</h1>
+                <p style="color: var(--text-secondary); font-size: 0.875rem;">Modify coordinates below to rewrite telemetry views.</p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; max-width: 320px; width: 100%;">
+                <input type="text" id="cityInput" placeholder="Enter target city name...">
+                <button class="btn-action" onclick="mutateMockData()">Query</button>
+            </div>
+        </div>
+
+        <div class="dash-grid">
+            <!-- Hero Telemetry Block -->
+            <div class="hero-widget panel-card" style="background: #090d16;">
+                <img id="dashImg" class="hero-bg" src="3.png" alt="Weather Status Background">
+                <div style="position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h2 id="cityName" style="font-size: 2.25rem; font-weight: 900; letter-spacing: -0.03em;">London, UK</h2>
+                        <p id="weatherDesc" style="color: #67e8f9; font-weight: 500; font-size: 0.94rem; margin-top: 0.25rem;">Scattered Overcast Rain Systems</p>
+                    </div>
+                    <span id="weatherIcon" style="font-size: 4rem;">🌧️</span>
+                </div>
+                <div style="position: relative; z-index: 2; display: flex; align-items: baseline; gap: 1rem;">
+                    <span id="tempMetric" style="font-size: 5.5rem; font-weight: 300; letter-spacing: -0.05em;">14°C</span>
+                    <span style="color: var(--text-secondary); font-size: 0.875rem; background: rgba(0,0,0,0.5); padding: 0.35rem 0.75rem; border-radius: 0.5rem;">Feels Like: 11°C</span>
+                </div>
+            </div>
+
+            <!-- Configuration Card Panel -->
+            <div class="panel-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">🛠️ Dashboard Options</h3>
+                    <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 0.75rem; border-radius: 0.75rem; font-size: 0.8rem; font-weight: 600;">
+                        <span>Metric Readouts (°C / hPa)</span>
+                        <input type="checkbox" checked style="width: auto;">
+                    </label>
+                    <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-main); padding: 0.75rem; border-radius: 0.75rem; font-size: 0.8rem; font-weight: 600;">
+                        <span>Severe Frost Alarm Sirens</span>
+                        <input type="checkbox" checked style="width: auto;">
+                    </label>
+                </div>
+                <p style="font-size: 0.7rem; color: #475569; text-align: center; margin-top: 1rem;">Layout Matrix Hash: standard-matrix-v26</p>
+            </div>
+        </div>
+
+        <div class="metrics-row">
+            <div class="panel-card"><p style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 700;">Wind Stream</p><h4 id="windVal" style="font-size: 1.5rem; font-weight: 800; margin-top: 0.25rem;">18.4 km/h NW</h4></div>
+            <div class="panel-card"><p style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 700;">Relative Humidity</p><h4 id="humidVal" style="font-size: 1.5rem; font-weight: 800; margin-top: 0.25rem;">82% Vol</h4></div>
+            <div class="panel-card"><p style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 700;">Barometric Node</p><h4 style="font-size: 1.5rem; font-weight: 800; margin-top: 0.25rem;">1012.1 hPa</h4></div>
+            <div class="panel-card"><p style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-secondary); font-weight: 700;">UV Exposure Risk</p><h4 style="font-size: 1.5rem; font-weight: 800; margin-top: 0.25rem; color: #f97316;">3 Low Risk</h4></div>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 SkyPulse Infrastructure Networks. All telemetry systems secured.</footer>
+
+    <script>
+        function mutateMockData() {
+            const input = document.getElementById('cityInput').value.trim();
+            if(!input) return alert('Register a valid search string parameter.');
+            const conditions = ["Arid Solar Front", "Violent Cloud Dispersal", "Dense Fog Fields"];
+            const icons = ["☀️", "⛈️", "🌫️"];
+            const images = [
+                "https://unsplash.com",
+                "https://unsplash.com",
+                "https://unsplash.com"
+            ];
+            const rand = Math.floor(Math.random() * conditions.length);
+            
+            document.getElementById('cityName').innerText = input;
+            document.getElementById('tempMetric').innerText = Math.floor(Math.random()*35) + "°C";
+            document.getElementById('weatherDesc').innerText = conditions[rand];
+            document.getElementById('weatherIcon').innerText = icons[rand];
+            document.getElementById('dashImg').src = images[rand];
+            document.getElementById('windVal').innerText = (Math.random()*25).toFixed(1) + " km/h SSE";
+            document.getElementById('humidVal').innerText = Math.floor(Math.random()*40 + 50) + "% Vol";
+            document.getElementById('cityInput').value = "";
+        }
+    </script>
+</body>
+</html>
